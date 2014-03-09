@@ -547,7 +547,7 @@ src_install() {
 
 	cp "${FILESDIR}"/${PVR}/nginx.conf "${ED}"/etc/nginx/nginx.conf || die
 
-	newinitd "${FILESDIR}"/${PVR}/nginx.init nginx
+	newinitd "${FILESDIR}"/${PVR}/nginx.initd nginx
 
 	cp "${FILESDIR}"/${PVR}/nginx.conf "${ED}"/etc/nginx/nginx.conf || die
 	rm conf/win-utf conf/koi-win conf/koi-utf
