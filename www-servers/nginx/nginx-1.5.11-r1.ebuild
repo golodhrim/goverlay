@@ -23,25 +23,25 @@ GENTOO_DEPEND_ON_PERL="no"
 SYSLOG_MODULE_PV="0.25"
 SYSLOG_MODULE_NGINX_PV="1.4.0"
 SYSLOG_MODULE_P="ngx_syslog-${SYSLOG_MODULE_PV}"
-SYSLOG_MODULE_URI="https://github.com/yaoweibin/nginx_syslog_patch/archive/${SYSLOG_MODULE_P}.tar.gz"
+SYSLOG_MODULE_URI="https://github.com/yaoweibin/nginx_syslog_patch/archive/v${SYSLOG_MODULE_PV}.tar.gz"
 SYSLOG_MODULE_WD="${WORKDIR}/nginx_syslog_patch-${SYSLOG_MODULE_PV}"
 
 # devel_kit (https://github.com/simpl/ngx_devel_kit, BSD license)
 DEVEL_KIT_MODULE_PV="0.2.19"
 DEVEL_KIT_MODULE_P="ngx_devel_kit-v${DEVEL_KIT_MODULE_PV}"
-DEVEL_KIT_MODULE_URI="https://github.com/simpl/ngx_devel_kit/archive/${DEVEL_KIT_MODULE_PV}.tar.gz"
+DEVEL_KIT_MODULE_URI="https://github.com/simpl/ngx_devel_kit/archive/v${DEVEL_KIT_MODULE_PV}.tar.gz"
 DEVEL_KIT_MODULE_WD="${WORKDIR}/ngx_devel_kit-${DEVEL_KIT_MODULE_PV}"
 
 # http_uploadprogress (https://github.com/masterzen/nginx-upload-progress-module, BSD-2 license)
 HTTP_UPLOAD_PROGRESS_MODULE_PV="0.9.0"
 HTTP_UPLOAD_PROGRESS_MODULE_P="ngx_http_upload_progress-v${HTTP_UPLOAD_PROGRESS_MODULE_PV}"
-HTTP_UPLOAD_PROGRESS_MODULE_URI="https://github.com/masterzen/nginx-upload-progress-module/archive/${HTTP_UPLOAD_PROGRESS_MODULE_PV}.tar.gz"
+HTTP_UPLOAD_PROGRESS_MODULE_URI="https://github.com/masterzen/nginx-upload-progress-module/archive/v${HTTP_UPLOAD_PROGRESS_MODULE_PV}.tar.gz"
 HTTP_UPLOAD_PROGRESS_MODULE_WD="${WORKDIR}/nginx-upload-progress-module-${HTTP_UPLOAD_PROGRESS_MODULE_PV}"
 
 # http_headers_more (http://github.com/agentzh/headers-more-nginx-module, BSD license)
 HTTP_HEADERS_MORE_MODULE_PV="0.25"
 HTTP_HEADERS_MORE_MODULE_P="ngx_http_headers_more-v${HTTP_HEADERS_MORE_MODULE_PV}"
-HTTP_HEADERS_MORE_MODULE_URI="https://github.com/agentzh/headers-more-nginx-module/archive/${HTTP_HEADERS_MORE_MODULE_PV}.tar.gz"
+HTTP_HEADERS_MORE_MODULE_URI="https://github.com/agentzh/headers-more-nginx-module/archive/v${HTTP_HEADERS_MORE_MODULE_PV}.tar.gz"
 HTTP_HEADERS_MORE_MODULE_WD="${WORKDIR}/headers-more-nginx-module-${HTTP_HEADERS_MORE_MODULE_PV}"
 
 # http_push (https://github.com/slact/nginx_http_push_module/, MIT license)
@@ -99,9 +99,9 @@ HTTP_NAXSI_MODULE_URI="https://github.com/nbs-system/naxsi/archive/${HTTP_NAXSI_
 HTTP_NAXSI_MODULE_WD="${WORKDIR}/naxsi-${HTTP_NAXSI_MODULE_PV}/naxsi_src"
 
 # nginx-rtmp-module (https://github.com/arut/nginx-rtmp-module, BSD license)
-RTMP_MODULE_PV="v1.1.3"
+RTMP_MODULE_PV="1.1.3"
 RTMP_MODULE_P="ngx_rtmp-${RTMP_MODULE_PV}"
-RTMP_MODULE_URI="https://github.com/arut/nginx-rtmp-module/archive/${RTMP_MODULE_PV}.tar.gz"
+RTMP_MODULE_URI="https://github.com/arut/nginx-rtmp-module/archive/v${RTMP_MODULE_PV}.tar.gz"
 RTMP_MODULE_WD="${WORKDIR}/nginx-rtmp-module-${RTMP_MODULE_PV}"
 
 # nginx-dav-ext-module (https://github.com/arut/nginx-dav-ext-module, BSD license)

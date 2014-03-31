@@ -21,30 +21,30 @@ GENTOO_DEPEND_ON_PERL="no"
 #FUNTOO LATEST
 # syslog (https://github.com/yaoweibin/nginx_syslog_patch, BSD license)
 SYSLOG_MODULE_PV="0.25"
-SYSLOG_MODULE_NGINX_PV="1.4.0"
+SYSLOG_MODULE_NGINX_PV="1.3.14"
 SYSLOG_MODULE_P="ngx_syslog-${SYSLOG_MODULE_PV}"
-SYSLOG_MODULE_URI="https://github.com/yaoweibin/nginx_syslog_patch/archive/${SYSLOG_MODULE_P}.tar.gz"
+SYSLOG_MODULE_URI="https://github.com/yaoweibin/nginx_syslog_patch/archive/v${SYSLOG_MODULE_PV}.tar.gz"
 SYSLOG_MODULE_WD="${WORKDIR}/nginx_syslog_patch-${SYSLOG_MODULE_PV}"
 
 #FUNTOO LATEST
 # devel_kit (https://github.com/simpl/ngx_devel_kit, BSD license)
 DEVEL_KIT_MODULE_PV="0.2.19"
 DEVEL_KIT_MODULE_P="ngx_devel_kit-v${DEVEL_KIT_MODULE_PV}"
-DEVEL_KIT_MODULE_URI="https://github.com/simpl/ngx_devel_kit/archive/${DEVEL_KIT_MODULE_PV}.tar.gz"
+DEVEL_KIT_MODULE_URI="https://github.com/simpl/ngx_devel_kit/archive/v${DEVEL_KIT_MODULE_PV}.tar.gz"
 DEVEL_KIT_MODULE_WD="${WORKDIR}/ngx_devel_kit-${DEVEL_KIT_MODULE_PV}"
 
 #FUNTOO LATEST
 # http_uploadprogress (https://github.com/masterzen/nginx-upload-progress-module, BSD-2 license)
 HTTP_UPLOAD_PROGRESS_MODULE_PV="0.9.0"
 HTTP_UPLOAD_PROGRESS_MODULE_P="ngx_http_upload_progress-v${HTTP_UPLOAD_PROGRESS_MODULE_PV}"
-HTTP_UPLOAD_PROGRESS_MODULE_URI="https://github.com/masterzen/nginx-upload-progress-module/archive/${HTTP_UPLOAD_PROGRESS_MODULE_PV}.tar.gz"
+HTTP_UPLOAD_PROGRESS_MODULE_URI="https://github.com/masterzen/nginx-upload-progress-module/archive/v${HTTP_UPLOAD_PROGRESS_MODULE_PV}.tar.gz"
 HTTP_UPLOAD_PROGRESS_MODULE_WD="${WORKDIR}/nginx-upload-progress-module-${HTTP_UPLOAD_PROGRESS_MODULE_PV}"
 
 #FUNTOO LATEST
 # http_headers_more (http://github.com/agentzh/headers-more-nginx-module, BSD license)
 HTTP_HEADERS_MORE_MODULE_PV="0.25"
 HTTP_HEADERS_MORE_MODULE_P="ngx_http_headers_more-v${HTTP_HEADERS_MORE_MODULE_PV}"
-HTTP_HEADERS_MORE_MODULE_URI="https://github.com/agentzh/headers-more-nginx-module/archive/${HTTP_HEADERS_MORE_MODULE_PV}.tar.gz"
+HTTP_HEADERS_MORE_MODULE_URI="https://github.com/agentzh/headers-more-nginx-module/archive/v${HTTP_HEADERS_MORE_MODULE_PV}.tar.gz"
 HTTP_HEADERS_MORE_MODULE_WD="${WORKDIR}/headers-more-nginx-module-${HTTP_HEADERS_MORE_MODULE_PV}"
 
 #FUNTOO LATEST
@@ -112,9 +112,9 @@ HTTP_NAXSI_MODULE_WD="${WORKDIR}/naxsi-${HTTP_NAXSI_MODULE_PV}/naxsi_src"
 
 #FUNTOO LATEST
 # nginx-rtmp-module (https://github.com/arut/nginx-rtmp-module, BSD license)
-RTMP_MODULE_PV="v1.1.3"
+RTMP_MODULE_PV="1.1.3"
 RTMP_MODULE_P="ngx_rtmp-${RTMP_MODULE_PV}"
-RTMP_MODULE_URI="https://github.com/arut/nginx-rtmp-module/archive/${RTMP_MODULE_PV}.tar.gz"
+RTMP_MODULE_URI="https://github.com/arut/nginx-rtmp-module/archive/v${RTMP_MODULE_PV}.tar.gz"
 RTMP_MODULE_WD="${WORKDIR}/nginx-rtmp-module-${RTMP_MODULE_PV}"
 
 #FUNTOO LATEST
@@ -550,7 +550,7 @@ src_configure() {
 		./configure \
 				--enable-standalone-module \
 				$(use_enable pcre-jit) \
-				$(use_with nginx_modules_http_lua lua) || die "configure failed for mod_security"
+				$(use_with nginx_modules_http_lua lua) || die "configure failed for mod_seciruty"
 	fi
 	if use nginx_modules_http_lua; then
 		cd ${S}/objs || die
@@ -656,20 +656,9 @@ src_install() {
 		dodoc "${HTTP_UPSTREAM_CHECK_MODULE_WD}"/{README,CHANGES}
 	fi
 
-# README.md is still empty
-#	if use nginx_modules_http_metrics; then
-#		docinto ${HTTP_METRICS_MODULE_P}
-#		dodoc "${HTTP_METRICS_MODULE_WD}"/README.md
-#	fi
-
 	if use nginx_modules_http_naxsi; then
 		insinto /etc/nginx
 		doins "${HTTP_NAXSI_MODULE_WD}"/../naxsi_config/naxsi_core.rules
-	fi
-
-	if use rtmp; then
-		docinto ${RTMP_MODULE_P}
-		dodoc "${RTMP_MODULE_WD}"/{AUTHORS,README.md,TODO,stat.xsl}
 	fi
 
 	if use nginx_modules_http_fancyindex; then
@@ -704,13 +693,14 @@ src_install() {
 
 	if use rtmp; then
 			docinto ${RTMP_MODULE_P}
-			dodoc "${RTMP_MODULE_WD}"/{AUTHORS,README.md,TODO,stat.xsl}
+			dodoc "${RTMP_MODULE_WD}"/{AUTHORS,README.md,stat.xsl}
 	fi
 
 	if use nginx_modules_http_dav_ext; then
 			docinto ${HTTP_DAV_EXT_MODULE_P}
 			dodoc "${HTTP_DAV_EXT_MODULE_WD}"/README
 	fi
+
 	if use nginx_modules_http_echo; then
 		docinto ${HTTP_ECHO_MODULE_P}
 		dodoc "${HTTP_ECHO_MODULE_WD}"/{README.markdown,doc/HttpEchoModule.wiki}
@@ -763,8 +753,8 @@ pkg_postinst() {
 	done
 
 	if [[ $fix_perms -eq 1 ]] ; then
-		ewarn "To fix a security bug \(CVE-2013-0337, bug #458726\) had the following"
-		ewarn "directories the world-readable bit removed \(if set\):"
+		ewarn "To fix a security bug (CVE-2013-0337, bug #458726) had the following"
+		ewarn "directories the world-readable bit removed (if set):"
 		ewarn "  ${EPREFIX}/var/log/nginx/"
 		ewarn "  ${EPREFIX}${NGINX_HOME_TMP}/{,client,proxy,fastcgi,scgi,uwsgi}"
 		ewarn "Check if this is correct for your setup before restarting nginx!"
