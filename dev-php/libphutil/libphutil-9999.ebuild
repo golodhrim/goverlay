@@ -21,8 +21,8 @@ DEPEND="virtual/awk:0
 		=www-client/arcanist-${PV}:0
 		dev-lang/php[cli]
 	)"
-RDEPEND=">=dev-lang/php-5.2.3[curl,iconv,json,mysql,mysqli,pcntl,ssl?,unicode]
-	dev-php/pecl-apc:0"
+RDEPEND=">=dev-lang/php-5.2.3[curl,iconv,json,mysql,mysqli,pcntl,ssl?,unicode]"
+#	dev-php/pecl-apc:0"
 
 src_prepare() {
 	epatch "${FILESDIR}/0001-Remove-the-usage-of-local-SSL-certificates-and-use-s.patch"
