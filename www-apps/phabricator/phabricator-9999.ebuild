@@ -29,7 +29,6 @@ RDEPEND=">=app-admin/webapp-config-1.51-r1:0
 	>=dev-lang/php-5.2.3[cli,curl,gd,iconv,json,mysql,mysqli,pcntl,ssl?,unicode]
 	dev-db/mysql
 	=dev-php/libphutil-${PV}:0
-	dev-php/pecl-apc:0
 	net-libs/nodejs:0
 	=www-client/arcanist-${PV}:0[git?,mercurial?,subversion?]
 	git? ( dev-vcs/git:0 )
